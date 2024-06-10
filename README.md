@@ -18,7 +18,7 @@ To get started with the Todos Web API, follow these steps:
 1. Clone the repository:
 
     ```bash
-    [git clone h(https://github.com/flynnbui/ToDosApp-ASP.NET.git)](https://github.com/flynnbui/ToDosApp-ASP.NET.git)
+    git clone https://github.com/flynnbui/ToDosApp-ASP.NET.git
     ```
 
 2. Navigate to the project directory:
