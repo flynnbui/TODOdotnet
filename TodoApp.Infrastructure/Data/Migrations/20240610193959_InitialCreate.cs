@@ -167,7 +167,7 @@ namespace TodoApp.Infrastructure.Data.Migrations
                     Title = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: true),
                     Status = table.Column<bool>(type: "boolean", nullable: false),
-                    OwnerId = table.Column<string>(type: "character varying(256)", nullable: false)
+                    OwnerId = table.Column<string>(type: "character varying(256)", nullable: true)
                 },
                 constraints: table =>
                 {

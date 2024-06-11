@@ -1,0 +1,7 @@
+System.Exception: An error occurred while adding a todo.
+ ---> Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Npgsql.PostgresException (0x80004005): 23502: null value in column "OwnerId" of relation "Todos" violates not-null constraint
+
+
+
+database update : dotnet ef database update --project ..\TodoApp.Infrastructure\TodoApp.Infrastructure.csproj  --startup-project "TodoApp.WebAPI.csproj"

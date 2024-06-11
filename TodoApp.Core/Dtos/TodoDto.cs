@@ -12,7 +12,7 @@ public record class CreateTodoDto (
 
 public record class UpdateTodoDto (
     [Required]
-    int id,
+    int Id,
 
     [Required]
     [StringLength(50)]

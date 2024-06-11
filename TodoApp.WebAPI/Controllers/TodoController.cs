@@ -7,7 +7,7 @@ using TodoApp.Core.Interfaces;
 
 namespace TodoApp.WebAPI.Controllers
 {
-    [Route("todo/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class TodoController : Controller
     {
