@@ -7,10 +7,10 @@ The Todos Web API is an educational resource built using ASP.NET 8 and follows t
 - **Clean Architecture**: The project is structured following the Clean Architecture principles, separating concerns into layers.
 - **EntityFramework and PostgreSQL**: Data access is implemented using EntityFramework Core with PostgreSQL as the underlying database.
 - **Docker Compose Setup**: Included Docker Compose YAML file facilitates setting up PostgreSQL for local development and testing.
-- **User Management with ASP.NET Core Identity**: ASP.NET Core Identity is used for managing users, including authentication and authorization.
+- **User Management with ASP.NET Core Identity**: ASP.NET Core Identity is used for managing users, including authentication and authorization. (Coming Soon)
 - **Cookie Authentication**: Authentication is supported via cookie-based authentication.
 - **JWT Authentication**: JSON Web Token (JWT) authentication is also implemented for securing API endpoints.
-
+(Coming Soon)
 ## Getting Started
 
 To get started with the Todos Web API, follow these steps:
@@ -30,7 +30,7 @@ To get started with the Todos Web API, follow these steps:
 3. Set up Docker Compose for PostgreSQL:
 
     ```bash
-    docker-compose up -d
+    docker-compose up dev-db
     ```
 
 4. Open the solution in Visual Studio or your preferred IDE.
