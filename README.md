@@ -30,7 +30,7 @@ To get started with the Todos Web API, follow these steps:
 3. Set up Docker Compose for PostgreSQL:
 
     ```bash
-    docker-compose up -d
+    docker-compose up dev-db
     ```
 
 4. Open the solution in Visual Studio or your preferred IDE.
