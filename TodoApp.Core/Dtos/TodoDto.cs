@@ -12,6 +12,9 @@ public record class CreateTodoDto (
 
 public record class UpdateTodoDto (
     [Required]
+    int id,
+
+    [Required]
     [StringLength(50)]
     string Title,
 

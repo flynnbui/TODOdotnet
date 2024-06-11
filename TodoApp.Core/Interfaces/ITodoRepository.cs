@@ -1,4 +1,4 @@
-﻿using TodoApp.Core.Dtos;
+﻿using TodoApp.Core.DTOs;
 using TodoApp.Core.Entities;
 
 namespace TodoApp.Core.Interfaces;

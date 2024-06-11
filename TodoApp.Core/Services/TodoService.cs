@@ -1,4 +1,4 @@
-﻿using TodoApp.Core.Dtos;
+﻿using TodoApp.Core.DTOs;
 using TodoApp.Core.Entities;
 using TodoApp.Core.Interfaces;
 
@@ -14,22 +14,24 @@ public class TodoService : ITodoService
 
     public async Task<IEnumerable<Todo>> GetAllTodosAsync()
     {
-        await _todoRepository.GetAllAsync();
+        return await _todoRepository.GetAllAsync();
     }
 
     public async Task<Todo> GetTodoByIdAsync(int id)
     {
-        await _todoRepository.GetByIdAsync(id);
+        return await _todoRepository.GetByIdAsync(id);
     }
 
-    public async Task CreateTodoAsync(Todo todo)
+    public async Task<Todo> CreateTodoAsync(Todo todo)
     {
         await _todoRepository.AddAsync(todo);
+        return todo;
     }
 
-    public async Task UpdateTodoAsync(Todo todo)
+    public async Task<Todo> UpdateTodoAsync(Todo todo)
     {
         await _todoRepository.UpdateAsync(todo);
+        return todo;
     }
 
     public async Task DeleteTodoAsync(int id)
