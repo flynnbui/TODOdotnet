@@ -45,6 +45,7 @@ The Todos Web API relies on the following dependencies:
 - ASP.NET 8
 - EntityFramework Core
 - PostgreSQL
+- AutoMapper
 - Docker
 - ASP.NET Core Identity
 
