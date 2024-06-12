@@ -8,7 +8,7 @@ The Todos Web API is an educational resource built using ASP.NET 8 and follows t
 - **EntityFramework and PostgreSQL**: Data access is implemented using EntityFramework Core with PostgreSQL as the underlying database.
 - **Docker Compose Setup**: Included Docker Compose YAML file facilitates setting up PostgreSQL for local development and testing.
 - **User Management with ASP.NET Core Identity**: ASP.NET Core Identity is used for managing users, including authentication and authorization.
-- **Cookie Authentication**: Authentication is supported via cookie-based authentication. (Coming Soon)
+- **Cookie Authentication**: Authentication is supported via cookie-based authentication.
 - **JWT Authentication**: JSON Web Token (JWT) authentication is also implemented for securing API endpoints.
 ## Getting Started
 
