@@ -6,6 +6,6 @@ namespace TodoApp.Core.Interfaces;
 
 public interface IUserServices
 {
-    public Task<ActionResult<string>> RegisterUserAsync(TodoUser user, string password);
-    public Task<ActionResult<string>> LoginUserAsync(TodoUser user, string password);
+    public Task<ActionResult<string>> RegisterUserAsync(string userName, string password);
+    public Task<ActionResult<string>> LoginUserAsync(string userName, string password);
 }

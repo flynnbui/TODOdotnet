@@ -1,8 +1,9 @@
-﻿using TodoApp.Core.Entities;
+﻿using Microsoft.AspNetCore.Mvc;
+using TodoApp.Core.Entities;
 
 namespace TodoApp.Core.Interfaces;
 
 public interface ITokenClaimsService
 {
-    string GenerateJwtToken(TodoUser user);
+    Task<string> GenerateJwtToken(string userName);
 }

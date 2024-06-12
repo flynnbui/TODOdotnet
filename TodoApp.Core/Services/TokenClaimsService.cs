@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using TodoApp.Core.Entities;
 using TodoApp.Core.Interfaces;
@@ -19,8 +20,9 @@ public class TokenClaimsService : ITokenClaimsService
         _configuration = configuration;
     }
      
-    public string GenerateJwtToken(TodoUser user)
+    public async Task<string> GenerateJwtToken(string userName)
     {
+        var user = await _userManager.FindByNameAsync(userName);
         var claims = new List<Claim>
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id),

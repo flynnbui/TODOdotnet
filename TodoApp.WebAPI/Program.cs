@@ -46,11 +46,14 @@ builder.Services.AddAuthentication(config =>
             ValidateIssuer = false,
             ValidateAudience = false
         };
-    });
+    }).AddCookie();
 
 // Register Dependencies
 builder.Services.AddScoped<ITodoRepository, TodoRepository>();
 builder.Services.AddScoped<ITodoService, TodoService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ITokenClaimsService, TokenClaimsService>();
+builder.Services.AddScoped<IUserServices, UserServices>();
 
 // Add Controller service
 builder.Services.AddControllers();

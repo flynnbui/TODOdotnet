@@ -6,7 +6,6 @@ namespace TodoApp.Core.DTOs;
 public record class UserInfo
 (
     [Required]
-    [EmailAddress]
     string UserName,
 
     [Required]

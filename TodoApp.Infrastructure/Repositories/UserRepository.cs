@@ -13,16 +13,15 @@ public class UserRepository : IUserRepository
         _signInManager = signInManager;
     }
 
-    public async Task<IdentityResult> RegisterAsync(TodoUser newUser, string password)
+    public async Task<IdentityResult> RegisterAsync(string userName, string password)
     {
-        var result = await _userManager.CreateAsync(newUser, password);
+        var result = await _userManager.CreateAsync(new TodoUser() { UserName = userName }, password);
         return result;
     }
 
-    public async Task<SignInResult> LoginAsync(TodoUser user, string password)
+    public async Task<SignInResult> LoginAsync(string userName, string password)
     {
-        var username = user.UserName;
-        var result = await _signInManager.PasswordSignInAsync(username, password, false, lockoutOnFailure: false);
+        var result = await _signInManager.PasswordSignInAsync(userName, password, false, lockoutOnFailure: false);
         return result;
     }
 }

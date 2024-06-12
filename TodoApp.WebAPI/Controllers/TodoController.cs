@@ -1,5 +1,6 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Http.HttpResults;
+﻿using System.Security.Claims;
+using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TodoApp.Core.DTOs;
 using TodoApp.Core.Entities;
@@ -8,8 +9,9 @@ using TodoApp.Core.Interfaces;
 namespace TodoApp.WebAPI.Controllers
 {
     [Route("[controller]")]
+    [Authorize]
     [ApiController]
-    public class TodoController : Controller
+    public class TodoController : ControllerBase
     {
         private readonly ITodoService _todoService;
         private readonly IMapper _mapper;
@@ -22,7 +24,6 @@ namespace TodoApp.WebAPI.Controllers
         [HttpGet()]
         public async Task<ActionResult<IEnumerable<Todo>>> GetAllTodos()
         {
-            Console.WriteLine("controller works!!");
             var todo = await _todoService.GetAllTodosAsync();
             return Ok(todo);
         }
@@ -35,7 +36,7 @@ namespace TodoApp.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Todo>> CreateTodo(CreateTodoDto todoDto)
+        public async Task<ActionResult<Todo>> CreateTodo([FromForm] CreateTodoDto todoDto)
         {
             if (!ModelState.IsValid)
             {
@@ -43,13 +44,14 @@ namespace TodoApp.WebAPI.Controllers
             }
             // Use AutoMapper to map the DTO directly to the entity
             var newTodo = _mapper.Map<Todo>(todoDto);
+            newTodo.OwnerId = User.Identity.Name;
 
             newTodo = await _todoService.CreateTodoAsync(newTodo);
             return Ok(newTodo);
         }
 
         [HttpPost("{id}")]
-        public async Task<ActionResult<Todo>> UpdateTodoById(int id, UpdateTodoDto todoDto)
+        public async Task<ActionResult<Todo>> UpdateTodoById([FromForm] UpdateTodoDto todoDto)
         {
             if (!ModelState.IsValid)
             {
