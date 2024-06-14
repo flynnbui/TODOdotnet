@@ -23,17 +23,17 @@ namespace TodoApp.Infrastructure.Repositories
         {
             try
             {
-                var todo = await _context.Todos.FindAsync(id);
+                var todo = await _context.Todos.FindAsync(id).ConfigureAwait(false);
                 if (todo == null)
                 {
                     throw new Exception($"Todo with Id '{id}' not found.");
                 }
-                Console.WriteLine(_httpContextAccessor.HttpContext.User.Identity.Name);
 
-                {
-                    throw new Exception("You are not authorized to access this todo.");
-                }
-                return todo;
+                // Access HttpContext to get the authenticated user's name
+                string userName = _httpContextAccessor.HttpContext.User.Identity.Name;
+
+                // Log the owner of the todo item
+                Console.WriteLine("Todo owner " + userName); return todo;
             }
             catch (Exception ex)
             { 

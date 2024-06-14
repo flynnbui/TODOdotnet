@@ -20,8 +20,11 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 // Get the connection string from appsettings.json
 var connString = builder.Configuration.GetConnectionString("DefaultConnection");
 // Register the DbContext with the PostgreSQL provider
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connString));
+
+
 
 // For Entity Framework
 builder.Services.AddIdentity<TodoUser, IdentityRole>()
