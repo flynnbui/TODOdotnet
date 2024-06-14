@@ -30,7 +30,7 @@ namespace TodoApp.WebAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var result = await _userServices.LoginUserAsync(user.UserName, user.Password);
+            var result = await _userServices.LoginUserAsync(user.UserName, user.Password).ConfigureAwait(false);
             if (result.Value == null)
             {
                 return new BadRequestObjectResult("Something went wrong!");
@@ -45,7 +45,7 @@ namespace TodoApp.WebAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var result = await _userServices.RegisterUserAsync(user.UserName, user.Password);
+            var result = await _userServices.RegisterUserAsync(user.UserName, user.Password).ConfigureAwait(false);
             if (result.Value == null)
             {
                 return new BadRequestObjectResult("User registration failed");

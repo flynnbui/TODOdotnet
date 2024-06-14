@@ -20,7 +20,7 @@ public class UserServices : IUserServices
     }
     public async Task<ActionResult<string>> RegisterUserAsync(string userName, string password)
     {
-        var result = await _userRepository.RegisterAsync(userName, password);
+        var result = await _userRepository.RegisterAsync(userName, password).ConfigureAwait(false);
         if (result.Succeeded)
         {
             var token = await _tokenClaimsService.GenerateJwtToken(userName);
@@ -31,7 +31,7 @@ public class UserServices : IUserServices
 
     public async Task<ActionResult<string>> LoginUserAsync(string userName, string password)
     {
-        var result = await _userRepository.LoginAsync(userName, password);
+        var result = await _userRepository.LoginAsync(userName, password).ConfigureAwait(false);
         if (result == SignInResult.Success)
         {
             var token = await _tokenClaimsService.GenerateJwtToken(userName);

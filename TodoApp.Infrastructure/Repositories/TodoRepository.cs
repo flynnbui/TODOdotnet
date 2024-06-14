@@ -19,6 +19,7 @@ namespace TodoApp.Infrastructure.Repositories
             try
             {
                 var todo = await _context.Todos.FindAsync(id);
+                var something = await _context.Todos.FindAsync(id);
                 if (todo == null)
                 {
                     throw new Exception($"Todo with Id '{id}' not found.");
@@ -31,12 +32,11 @@ namespace TodoApp.Infrastructure.Repositories
             }
         }
 
-
         public async Task<IEnumerable<Todo>> GetAllAsync()
         {
             try
             {
-                return await _context.Todos.ToListAsync();
+                return await _context.Todos.ToListAsync().ConfigureAwait(false);
             }
             catch (Exception ex)
             {

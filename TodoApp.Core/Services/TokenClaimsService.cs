@@ -22,7 +22,7 @@ public class TokenClaimsService : ITokenClaimsService
      
     public async Task<string> GenerateJwtToken(string userName)
     {
-        var user = await _userManager.FindByNameAsync(userName);
+        var user = await _userManager.FindByNameAsync(userName).ConfigureAwait(false);
         var claims = new List<Claim>
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id),

@@ -24,19 +24,19 @@ namespace TodoApp.WebAPI.Controllers
         [HttpGet()]
         public async Task<ActionResult<IEnumerable<Todo>>> GetAllTodos()
         {
-            var todo = await _todoService.GetAllTodosAsync();
+            var todo = await _todoService.GetAllTodosAsync().ConfigureAwait(false);
             return Ok(todo);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Todo>> GetTodoById(int id)
         {
-            var todo = await _todoService.GetTodoByIdAsync(id);
+            var todo = await _todoService.GetTodoByIdAsync(id).ConfigureAwait(false);
             return Ok(todo);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Todo>> CreateTodo([FromForm] CreateTodoDto todoDto)
+        public async Task<ActionResult<Todo>> CreateTodo(CreateTodoDto todoDto)
         {
             if (!ModelState.IsValid)
             {
@@ -46,7 +46,7 @@ namespace TodoApp.WebAPI.Controllers
             var newTodo = _mapper.Map<Todo>(todoDto);
             newTodo.OwnerId = User.Identity.Name;
 
-            newTodo = await _todoService.CreateTodoAsync(newTodo);
+            newTodo = await _todoService.CreateTodoAsync(newTodo).ConfigureAwait(false);
             return Ok(newTodo);
         }
 
@@ -59,7 +59,7 @@ namespace TodoApp.WebAPI.Controllers
             }
             // Use AutoMapper to map the DTO directly to the entity
             var updateTodo = _mapper.Map<Todo>(todoDto);
-            updateTodo = await _todoService.UpdateTodoAsync(updateTodo);
+            updateTodo = await _todoService.UpdateTodoAsync(updateTodo).ConfigureAwait(false);
 
             return Ok(updateTodo);
 
@@ -68,7 +68,7 @@ namespace TodoApp.WebAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTodo(int id)
         {
-            await _todoService.DeleteTodoAsync(id);
+            await _todoService.DeleteTodoAsync(id).ConfigureAwait(false);
             return NoContent();
         }
     }
