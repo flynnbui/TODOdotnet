@@ -23,3 +23,12 @@ public record class UpdateTodoDto(
 
     bool Status
 );
+
+/* This is a DTO class that will be used to transfer data between the API and the client
+ that omit the ownerId field for security reason */
+public record class TodoDto(
+    int Id,
+    string Title,
+    string? Description,
+    bool Status
+);

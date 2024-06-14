@@ -51,7 +51,7 @@ namespace TodoApp.WebAPI.Controllers
         }
 
         [HttpPost("{id}")]
-        public async Task<ActionResult<Todo>> UpdateTodoById([FromForm] UpdateTodoDto todoDto)
+        public async Task<ActionResult<Todo>> UpdateTodoById(UpdateTodoDto todoDto)
         {
             if (!ModelState.IsValid)
             {

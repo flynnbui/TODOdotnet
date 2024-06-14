@@ -24,7 +24,7 @@ namespace TodoApp.WebAPI.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<String>> Login( [FromForm] UserInfo user)
+        public async Task<ActionResult<String>> Login(UserInfo user)
         {
             if(!ModelState.IsValid)
             {
@@ -39,7 +39,7 @@ namespace TodoApp.WebAPI.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<String>> Register( [FromForm] UserInfo user)
+        public async Task<ActionResult<String>> Register(UserInfo user)
         {
             if(!ModelState.IsValid)
             {

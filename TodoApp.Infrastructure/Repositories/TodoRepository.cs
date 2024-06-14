@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using TodoApp.Core.Entities;
 using TodoApp.Core.Interfaces;
 using TodoApp.Infrastructure.Data;
@@ -8,10 +9,14 @@ namespace TodoApp.Infrastructure.Repositories
     public class TodoRepository : ITodoRepository
     {
         private readonly ApplicationDbContext _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public TodoRepository(ApplicationDbContext context)
+
+        public TodoRepository(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
+            _httpContextAccessor = httpContextAccessor;
+
         }
 
         public async Task<Todo> GetByIdAsync(int id)
@@ -19,10 +24,14 @@ namespace TodoApp.Infrastructure.Repositories
             try
             {
                 var todo = await _context.Todos.FindAsync(id);
-                var something = await _context.Todos.FindAsync(id);
                 if (todo == null)
                 {
                     throw new Exception($"Todo with Id '{id}' not found.");
+                }
+                Console.WriteLine(_httpContextAccessor.HttpContext.User.Identity.Name);
+
+                {
+                    throw new Exception("You are not authorized to access this todo.");
                 }
                 return todo;
             }
