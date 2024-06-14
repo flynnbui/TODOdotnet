@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using TodoApp.Core.Entities;
 using TodoApp.Core.Interfaces;
 using TodoApp.Infrastructure.Data;
@@ -8,10 +9,12 @@ namespace TodoApp.Infrastructure.Repositories
     public class TodoRepository : ITodoRepository
     {
         private readonly ApplicationDbContext _context;
+        private readonly IHttpContextAccessor _httpContext;
 
-        public TodoRepository(ApplicationDbContext context)
+        public TodoRepository(ApplicationDbContext context, IHttpContextAccessor httpContext)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
+            _httpContext = httpContext ?? throw new ArgumentNullException(nameof(httpContext));
         }
 
         public async Task<Todo> GetByIdAsync(int id)
@@ -23,10 +26,14 @@ namespace TodoApp.Infrastructure.Repositories
                 {
                     throw new Exception($"Todo with Id '{id}' not found.");
                 }
+                else if (todo.OwnerId != _httpContext.HttpContext.User.Identity.Name)
+                {
+                    throw new Exception("You are not authorized to access this todo.");
+                }
                 return todo;
             }
             catch (Exception ex)
-            { 
+            {
                 throw new Exception("An error occurred while getting a todo by Id.", ex);
             }
         }
@@ -36,7 +43,11 @@ namespace TodoApp.Infrastructure.Repositories
         {
             try
             {
-                return await _context.Todos.ToListAsync();
+                // Get all todos that belong to the current user
+                var todos = await _context.Todos
+                .Where(x => x.OwnerId.Contains(_httpContext.HttpContext.User.Identity.Name))
+                .ToListAsync();
+                return todos;
             }
             catch (Exception ex)
             {
