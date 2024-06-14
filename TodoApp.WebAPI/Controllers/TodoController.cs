@@ -47,7 +47,8 @@ namespace TodoApp.WebAPI.Controllers
             newTodo.OwnerId = User.Identity.Name;
 
             newTodo = await _todoService.CreateTodoAsync(newTodo).ConfigureAwait(false);
-            return Ok(newTodo);
+            var lmaotodo = await _todoService.GetTodoByIdAsync(1);
+            return Ok(lmaotodo);
         }
 
         [HttpPost("{id}")]
