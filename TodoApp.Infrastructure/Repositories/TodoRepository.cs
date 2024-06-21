@@ -15,6 +15,7 @@ namespace TodoApp.Infrastructure.Repositories
         public TodoRepository(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
+            _httpContext = httpContext ?? throw new ArgumentNullException(nameof(httpContext));
             _httpContextAccessor = httpContextAccessor;
 
         }
@@ -36,7 +37,7 @@ namespace TodoApp.Infrastructure.Repositories
                 Console.WriteLine("Todo owner " + userName); return todo;
             }
             catch (Exception ex)
-            { 
+            {
                 throw new Exception("An error occurred while getting a todo by Id.", ex);
             }
         }
