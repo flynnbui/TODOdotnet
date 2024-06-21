@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TodoApp.Core.DTOs;
+using TodoApp.Core.Entities;
 using TodoApp.Core.Interfaces;
 
 namespace TodoApp.WebAPI.Controllers
@@ -51,6 +51,17 @@ namespace TodoApp.WebAPI.Controllers
                 return new BadRequestObjectResult("User registration failed");
             }
             return Ok(result);
+        }
+
+        [HttpGet("user")]
+        public async Task<ActionResult<TodoUser>> GetUserDetails(string userId)
+        {
+            var user = await _userServices.GetUserDetailsAsync(userId).ConfigureAwait(false);
+            if (user == null)
+            {
+                return new BadRequestObjectResult("User not found");
+            }
+            return Ok(user);
         }
     }
 }

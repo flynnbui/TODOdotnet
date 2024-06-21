@@ -24,4 +24,9 @@ public class UserRepository : IUserRepository
         var result = await _signInManager.PasswordSignInAsync(userName, password, false, lockoutOnFailure: false);
         return result;
     }
+    public async Task<TodoUser> GetUserAsync(string userId)
+    {
+        var user = await _userManager.FindByIdAsync(userId);
+        return user;
+    }
 }

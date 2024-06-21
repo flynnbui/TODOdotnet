@@ -8,4 +8,5 @@ public interface IUserRepository
 {
     Task<IdentityResult> RegisterAsync(string userName, string password);
     Task<SignInResult> LoginAsync(string userName, string password);
+    Task<TodoUser> GetUserAsync(string userId);
 }

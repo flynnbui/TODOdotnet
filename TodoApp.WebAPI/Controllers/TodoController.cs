@@ -21,7 +21,7 @@ namespace TodoApp.WebAPI.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet()]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<Todo>>> GetAllTodos()
         {
             var todo = await _todoService.GetAllTodosAsync().ConfigureAwait(false);

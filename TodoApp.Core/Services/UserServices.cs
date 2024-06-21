@@ -39,4 +39,10 @@ public class UserServices : IUserServices
         }
         return new BadRequestObjectResult("User login failed");
     }
+
+    public async Task<TodoUser> GetUserDetailsAsync(string userId)
+    {
+        var user = await _userRepository.GetUserAsync(userId).ConfigureAwait(false);
+        return user;
+    }
 }
