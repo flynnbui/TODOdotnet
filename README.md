@@ -1,6 +1,6 @@
-# Todos Web API
+# Todo Web API
 
-The Todos Web API is an educational resource built using ASP.NET 8 and follows the Clean Architecture pattern. It showcases various features including clean architecture principles, data access with EntityFramework and PostgreSQL, Docker Compose setup for PostgreSQL, user management using ASP.NET Core Identity, cookie authentication, and JWT authentication.
+The Todos Web API is an experiment resource built using ASP.NET 8 and follows the Clean Architecture pattern. It showcases various features including clean architecture principles, data access with EntityFramework and PostgreSQL, Docker Compose setup for PostgreSQL, user management using ASP.NET Core Identity, cookie authentication, and JWT authentication.
 
 ## Features
 
